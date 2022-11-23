@@ -24,7 +24,6 @@
     </div>
     <TodoList 
       :todos="todos" 
-      @toggle-todo="toggleTodo"
       @delete-todo="deleteTodo"
     />
     <hr />
@@ -92,7 +91,6 @@ export default {
       try {
         await axios.post('todos', {
           subject: todo.subject,
-          completed: todo.completed,
         });
 
         getTodos(1);
@@ -115,23 +113,6 @@ export default {
         error.value = 'Something went wrong.';
         triggerToast('Something went wrong', 'danger')
       }
-    };
-
-    const toggleTodo = async (index, checked) => {
-      error.value = '';
-      const id = todos.value[index].id;
-      try {
-        await axios.patch('todos/' + id, {
-          completed: checked
-        });
-
-        todos.value[index].completed = checked
-      } catch (err) {
-        console.log(err);
-        error.value = 'Something went wrong.';
-        triggerToast('Something went wrong', 'danger')
-      }
-      
     };
 
     const moveToCreatePage = () => {
@@ -158,7 +139,6 @@ export default {
       todos,
       addTodo,
       deleteTodo,
-      toggleTodo,
       searchText,
       error,
       numberOfPages,

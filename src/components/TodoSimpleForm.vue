@@ -40,7 +40,6 @@
                     emit('add-todo', {
                         id: Date.now(),
                         subject: todo.value,
-                        completed: false,
                     });
                     hasError.value = false;
                     todo.value = '';

@@ -10,16 +10,6 @@
       <div v-if="editing" class="col-4">
         <div class="form-group">
           <label>Video link(youtube)</label>
-          <div>
-            <!-- <button 
-              class="btn"
-              type="button"
-              :class="todo.completed ? 'btn-success' : 'btn-danger'"
-              @click="toggleTodoStatus"
-            >
-              {{ todo.completed ? 'Completed' : 'Incomplete' }}
-            </button> -->
-          </div>
         </div>
       </div>
       <div v-else class="col-4">
@@ -106,7 +96,6 @@ export default {
         const router = useRouter();
         const todo = ref({
             subject: '',
-            completed: false,
             body: ''
         });
 
@@ -142,9 +131,6 @@ export default {
           return !_.isEqual(todo.value, originalTodo.value)
         });
 
-        const toggleTodoStatus = () => {
-          todo.value.completed = !todo.value.completed;
-        };
 
         const moveToTodoListPage = () => {
           router.push({
@@ -167,7 +153,6 @@ export default {
             let res;
             const data = {
               subject: todo.value.subject,
-              completed: todo.value.completed,
               body: todo.value.body,
             };
             if (props.editing) {
@@ -196,7 +181,6 @@ export default {
         return {
           todo,
           loading,
-          toggleTodoStatus,
           moveToTodoListPage,
           onSave,
           todoUpdated,

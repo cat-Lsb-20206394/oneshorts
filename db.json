@@ -2,195 +2,133 @@
   "todos": [
     {
       "subject": "asdf",
-      "completed": false,
       "body": "asdf",
       "id": 17
     },
     {
       "subject": "asdf",
-      "completed": false,
       "body": "asdf",
       "id": 18
     },
     {
       "subject": "asdf",
-      "completed": false,
       "body": "asdf",
       "id": 19
     },
     {
       "subject": "asdf",
-      "completed": false,
       "body": "asdf",
       "id": 20
     },
     {
       "subject": "test",
-      "completed": false,
       "body": "test",
       "id": 21
     },
     {
       "subject": "test",
-      "completed": false,
       "body": "test",
       "id": 22
     },
     {
       "subject": "test1",
-      "completed": false,
       "body": "test1",
       "id": 23
     },
     {
       "subject": "adsf",
-      "completed": false,
       "body": "asdf",
       "id": 24
     },
     {
       "subject": "asdf",
-      "completed": false,
       "body": "asdf",
       "id": 25
     },
     {
       "subject": "df",
-      "completed": false,
       "body": "df",
       "id": 27
     },
     {
       "subject": "asdf",
-      "completed": false,
       "body": "asdf",
       "id": 28
     },
     {
       "subject": "asdf",
-      "completed": false,
       "body": "asdfasdf",
       "id": 29
     },
     {
       "subject": "e",
-      "completed": false,
       "body": "f",
       "id": 30
     },
     {
       "subject": "asdf",
-      "completed": false,
       "body": "asdfasdf",
       "id": 31
     },
     {
       "subject": "타입스크립트 공부",
-      "completed": false,
       "body": "asdf",
       "id": 32
     },
     {
       "subject": "라라벨 공부",
-      "completed": false,
       "body": "asdf",
       "id": 33
     },
     {
       "subject": "파이썬 공부",
-      "completed": false,
       "body": "asdf",
       "id": 34
     },
     {
       "subject": "css 공부",
-      "completed": false,
       "body": "asdf",
       "id": 35
     },
     {
       "subject": "html 공부",
-      "completed": false,
       "body": "asdfff",
       "id": 36
     },
     {
       "subject": "코지 코더 채널 뷰 공부 ㅋㅋㅋ",
-      "completed": true,
       "body": "fff",
       "id": 37
     },
     {
       "subject": "게임하기",
-      "completed": true,
       "body": "fa",
       "id": 38
     },
     {
       "subject": "뷰js 공부하기",
-      "completed": true,
       "body": "asdffffffdf",
       "id": 39
     },
     {
       "subject": "adsf",
-      "completed": false,
       "body": "asdf",
       "id": 41
     },
     {
       "subject": "ㅁasdasd",
-      "completed": false,
       "body": "",
       "id": 42
     },
     {
       "subject": "ㄴㅇㄻㄴㅇㄹ",
-      "completed": false,
       "body": "",
       "id": 43
     },
     {
-      "subject": "ㅁㄴㅇ",
-      "completed": false,
-      "body": "ㅁㄴㅇㅁㄴㅇㅁㄴㅇ",
-      "id": 45
-    },
-    {
-      "subject": "test1",
-      "completed": false,
-      "body": "can we update this?",
-      "id": 46
-    },
-    {
-      "subject": "asdad",
-      "completed": false,
-      "body": "asdasdad",
-      "id": 47
-    },
-    {
-      "subject": "꺄륵",
-      "completed": false,
-      "body": "꺄르륵",
-      "id": 48
-    },
-    {
       "subject": "꺅",
-      "completed": false,
-      "body": "퉤",
-      "id": 49
-    },
-    {
-      "subject": ",,,,,,",
-      "completed": false,
-      "body": "............",
-      "id": 50
-    },
-    {
-      "subject": "kk",
-      "completed": false,
-      "body": "",
-      "id": 51
+      "body": "꺄륵\n",
+      "id": 44
     }
   ]
 }

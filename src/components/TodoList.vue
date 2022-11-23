@@ -7,13 +7,6 @@
         @click="moveToPage(item.id)"
       >
         <div class="flex-grow-1">
-          <!-- <input 
-            class="ml-2 mr-2"
-            type="checkbox"
-            :checked="item.completed"
-            @change="toggleTodo(index, $event)"
-            @click.stop
-          > -->
           <span>
             {{ item.subject }}
           </span>
@@ -56,15 +49,12 @@ export default {
             required: true
         }
     },
-    emits: ['toggle-todo', 'delete-todo'],
+    emits: ['delete-todo'],
     setup() {
         const { emit } = getCurrentInstance();
         const router = useRouter();
         const showModal = ref(false);
         const todoDeleteId = ref(null);
-        const toggleTodo = (index, event) => {
-          emit('toggle-todo', index, event.target.checked);
-        };
 
         const openModal = (id) => {
           todoDeleteId.value = id;
@@ -83,7 +73,6 @@ export default {
         };
 
         const moveToPage = (todoId) => {
-          // router.push('/todos/' + todoId);
           router.push({
             name: 'Todo',
             params: {
@@ -93,7 +82,6 @@ export default {
         };
 
         return {
-            toggleTodo,
             deleteTodo,
             moveToPage,
             showModal,
