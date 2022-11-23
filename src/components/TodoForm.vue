@@ -33,19 +33,19 @@
           <div class="row row-cols-2">
             <div class="col mt-2" >
               <img :src="require(`@/assets/platform/facebook.png`)" style="height: 80px; width: 80px;"/>
-              <input class="ml-4" type="checkbox" value="uploadfacebook">
+              <input class="ml-4" v-model="upload_platform_check" type="checkbox" value="uploadfacebook">
             </div>
             <div class="col mt-2">
               <img :src="require(`@/assets/platform/instagram.png`)" style="height: 80px; width: 80px;"/>
-              <input class="ml-4" type="checkbox" value="uploadinstagram">
+              <input class="ml-4" v-model="upload_platform_check" type="checkbox" value="uploadinstagram">
             </div> 
             <div class="col mt-5">
               <img :src="require(`@/assets/platform/youtube.png`)" style="height: 80px; width: 80px;"/>
-              <input class="ml-4" type="checkbox" value="uploadyoutube">
+              <input class="ml-4" v-model="upload_platform_check" type="checkbox" value="uploadyoutube">
             </div>
             <div class="col mt-5">
               <img :src="require(`@/assets/platform/tik-tok.png`)" style="height: 80px; width: 80px;"/>
-              <input class="ml-4" type="checkbox" value="uploadtiktok">
+              <input class="ml-4" v-model="upload_platform_check" type="checkbox" value="uploadtiktok">
             </div>
           </div>
         </div>
@@ -60,7 +60,6 @@
     <button v-if="!editing"
       type="submit" 
       class="btn btn-outline-dark mt-2"
-      :disabled="!todoUpdated"
     >
       Upload
     </button>
@@ -91,105 +90,100 @@ export default {
           default: false
       }
   },
-    setup(props) {
-        const route = useRoute();
-        const router = useRouter();
-        const todo = ref({
-            subject: '',
-            body: ''
-        });
+  setup(props) {
+    const route = useRoute();
+    const router = useRouter();
+    const todo = ref({
+        subject: '',
+        body: ''
+    });
 
-        const subjectError = ref('');
-        const originalTodo = ref(null);
-        const loading = ref(false);
-        const {
-          toastMessage,
-          toastAlertType,
-          showToast,
-          triggerToast
-        } = useToast();
+    const subjectError = ref('');
+    const originalTodo = ref(null);
+    const loading = ref(false);
+    const {
+      toastMessage,
+      toastAlertType,
+      showToast,
+      triggerToast
+    } = useToast();
 
-        const todoId = route.params.id      
+    const todoId = route.params.id      
 
-        const getTodo = async () => {
-            loading.value = true;
-          try {
-            const res = await axios.get(`todos/${todoId}`);
+    const getTodo = async () => {
+        loading.value = true;
+      try {
+        const res = await axios.get(`todos/${todoId}`);
 
-            todo.value = { ...res.data };
-            originalTodo.value = { ...res.data };
+        todo.value = { ...res.data };
+        originalTodo.value = { ...res.data };
 
-            loading.value = false;
-          } catch (error) {
-            loading.value = false;
-            console.log(error);
-            triggerToast('Something went wrong', 'danger');
-          }
+        loading.value = false;
+      } catch (error) {
+        loading.value = false;
+        console.log(error);
+        triggerToast('Something went wrong', 'danger');
+      }
+    };
+
+    const moveToTodoListPage = () => {
+      router.push({
+        name: 'Todos'
+      })
+    };
+
+    if (props.editing) {
+        getTodo();
+    }
+
+    const onSave = async () => {
+      subjectError.value = '';
+      if (!todo.value.subject) {
+        subjectError.value = 'Subject is required';
+        return;
+      }
+
+      try {
+        let res;
+        const data = {
+          subject: todo.value.subject,
+          body: todo.value.body,
         };
+        if (props.editing) {
+          res = await axios.put(`todos/${todoId}`, data);
+          originalTodo.value = {...res.data};
+        } else {
+          res = await axios.post('todos', data);
+          todo.value.subject = '';
+          todo.value.body = '';
+        }
+        
+        const message = 'Successfully ' + (props.editing ? 'Updated!' : 'Created!');
+        triggerToast(message);
 
-        const todoUpdated = computed(() => {
-          return !_.isEqual(todo.value, originalTodo.value)
-        });
-
-
-        const moveToTodoListPage = () => {
+        if (!props.editing) {
           router.push({
             name: 'Todos'
           })
-        };
-
-        if (props.editing) {
-            getTodo();
         }
+      } catch (error) {
+        console.log(error);
+        triggerToast('Something went wrong', 'danger')
+      }
+    };
 
-        const onSave = async () => {
-          subjectError.value = '';
-          if (!todo.value.subject) {
-            subjectError.value = 'Subject is required';
-            return;
-          }
-
-          try {
-            let res;
-            const data = {
-              subject: todo.value.subject,
-              body: todo.value.body,
-            };
-            if (props.editing) {
-              res = await axios.put(`todos/${todoId}`, data);
-              originalTodo.value = {...res.data};
-            } else {
-              res = await axios.post('todos', data);
-              todo.value.subject = '';
-              todo.value.body = '';
-            }
-            
-            const message = 'Successfully ' + (props.editing ? 'Updated!' : 'Created!');
-            triggerToast(message);
-
-            if (!props.editing) {
-              router.push({
-                name: 'Todos'
-              })
-            }
-          } catch (error) {
-            console.log(error);
-            triggerToast('Something went wrong', 'danger')
-          }
-        };
-
-        return {
-          todo,
-          loading,
-          moveToTodoListPage,
-          onSave,
-          todoUpdated,
-          showToast,
-          toastMessage,
-          toastAlertType,
-          subjectError,
-        };
-    }
+    return {
+      todo,
+      loading,
+      moveToTodoListPage,
+      onSave,
+      showToast,
+      toastMessage,
+      toastAlertType,
+      subjectError,
+      upload_platform_check :[],//여기에 넣은 값이 기본으로 체크되어서 나옴.... 그러면 upload에서 체크한 값을 DB에 저장하고 그대로 반환
+    };
+  }
 }
 </script>
 
