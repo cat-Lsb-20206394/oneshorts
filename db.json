@@ -4,6 +4,11 @@
       "subject": "aaa",
       "body": "bbb",
       "id": 1
+    },
+    {
+      "subject": "qwe",
+      "body": "",
+      "id": 2
     }
   ]
 }

@@ -4,13 +4,20 @@ module.exports = defineConfig({
   lintOnSave:false,
 
   devServer: {
-    // 프록시 설정
     proxy: {
-      '/api': {
-        target: 'http://localhost:8080',
-        changeOrigin: true
+      "/api": {
+        target: "http://localhost:3001"
       }
     }
   }
+  // devServer: {
+  //   // 프록시 설정
+  //   proxy: {
+  //     '/api': {
+  //       target: 'http://localhost:8080',
+  //       changeOrigin: true
+  //     }
+  //   }
+  // }
 
 })

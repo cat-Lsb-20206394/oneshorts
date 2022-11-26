@@ -40,7 +40,7 @@
       text-align:center;
     }
     .inner_btn{
-      border-width: 1;
+      border-width: 2px;
       border-radius: 5px;
     }
   </style> 

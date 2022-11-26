@@ -1,33 +1,34 @@
 <template>
+  <!--  여기서 이제 mypage의 v-if 써서 로그인 안하면 안 보이게 설정해야 함. -->
   <div class="mt-3">
     <div class="d-flex justify-content-between mb-3">
       <h2>My Video</h2>
-      <button 
+      <button
         class="btn btn-primary"
         @click="moveToCreatePage"
       >
         Upload Video
       </button>
     </div>
-    
+
     <input
       class="form-control"
-      type="text" 
+      type="text"
       v-model="searchText"
       placeholder="Search"
       @keyup.enter="searchTodo"
     >
     <hr />
-    
+
     <div v-if="!todos.length">
       There is nothing to display
     </div>
-    <TodoList 
-      :todos="todos" 
+    <TodoList
+      :todos="todos"
       @delete-todo="deleteTodo"
     />
     <hr />
-    <Pagination 
+    <Pagination
       v-if="todos.length"
       :numberOfPages="numberOfPages"
       :currentPage="currentPage"
@@ -133,6 +134,7 @@ export default {
         getTodos(1);
       }, 2000);     
     });
+
 
     return {
       searchTodo,
